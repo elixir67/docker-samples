@@ -1,0 +1,162 @@
+host: 'localhost:8001'
+headers: []
+apis:
+  - name: example-api
+    plugins: []
+    attributes:
+      hosts:
+        - example.com
+      strip_uri: true
+      preserve_host: false
+      upstream_url: 'http://httpbin.org'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+  - name: test
+    plugins: []
+    attributes:
+      uris:
+        - /test
+      methods:
+        - GET
+        - POST
+      strip_uri: true
+      preserve_host: false
+      upstream_url: 'http://httpbin.org'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+  - name: example
+    plugins: []
+    attributes:
+      uris:
+        - /zuul
+      methods:
+        - GET
+        - POST
+      strip_uri: false
+      preserve_host: true
+      upstream_url: 'http://116.62.95.63:8765'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+  - name: httpbin1
+    plugins: []
+    attributes:
+      uris:
+        - /httpbin1
+      methods:
+        - GET
+        - POST
+      strip_uri: true
+      preserve_host: false
+      upstream_url: 'http://httpbin.org'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+  - name: httpbin2
+    plugins: []
+    attributes:
+      uris:
+        - /httpbin2
+      methods:
+        - GET
+        - POST
+      strip_uri: true
+      preserve_host: false
+      upstream_url: 'http://httpbin.org'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+  - name: httpbin3
+    plugins: []
+    attributes:
+      uris:
+        - /httpbin3
+      methods:
+        - GET
+        - POST
+      strip_uri: true
+      preserve_host: false
+      upstream_url: 'http://httpbin.org'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+  - name: httpbin4
+    plugins:
+      - name: key-auth
+        attributes:
+          enabled: true
+          config:
+            hide_credentials: false
+            key_names:
+              - function
+            anonymous: ''
+    attributes:
+      uris:
+        - /httpbin4
+      methods:
+        - GET
+        - POST
+      strip_uri: true
+      preserve_host: false
+      upstream_url: 'http://httpbin.org'
+      retries: 5
+      upstream_connect_timeout: 60000
+      upstream_read_timeout: 60000
+      upstream_send_timeout: 60000
+      https_only: false
+      http_if_terminated: true
+consumers:
+  - username: dan
+    acls: []
+    credentials:
+      - name: key-auth
+        attributes:
+          key: 659527cf29b94831909d77e28a2f802d
+plugins:
+  - name: syslog
+    attributes:
+      enabled: true
+      config:
+        client_errors_severity: info
+        server_errors_severity: info
+        log_level: info
+        successful_severity: info
+  - name: cors
+    attributes:
+      enabled: true
+      config:
+        methods:
+          - HEAD
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+        credentials: true
+        max_age: 3600
+        origins:
+          - '*'
+        preflight_continue: false
+        headers:
+          - '*'
+
