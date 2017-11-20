@@ -1,7 +1,7 @@
 walle:
   image: starlight36/walle-web
   environment:
-    - "WALLE_DB_DSN=mysql:host=172.16.15.30;dbname=walle"
+    - "WALLE_DB_DSN=mysql:host=localhost;dbname=walle"
     - "WALLE_DB_USER=root"
     - "WALLE_DB_PASS=111111"
   ports:
