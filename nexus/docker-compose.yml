@@ -1,0 +1,12 @@
+ nexus:
+    image: flavioaiello/nexus3
+    environment:
+      - DOCKER_REPOSITORIES=default:5000 special:5001
+      - NEXUS_DEFAULT_PASSWORD=admin123
+      - NEXUS_PASSWORD=changeme
+    ports:
+      - 5000:5000
+      - 8081:8081
+    # volumes:
+    #   - /tmp/nexus3:/nexus-data
+    restart: always
